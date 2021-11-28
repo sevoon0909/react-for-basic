@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <body>
         <div id="root"></div>
     </body>
@@ -9,23 +10,21 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        const Title = ()=> (
-            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                Hello
-            </h3>
+        let counter = 0;
+        function countUp(e) {
+            counter = counter + 1;
+            render();
+        }
+        const App = () => (
+            <div>
+                <h3>Total clikcs: {counter}</h3>
+                <button onClick={countUp}>Click Me</button>
+            </div>//!함수변수의 맨앞은 대문자 잊지마! 소문자는 일반 태그로 인식
         );
-        const Button = () => (
-            <button
-                style={{
-                    backgroundColor: "tomato"
-                }}
-                onClick={() => console.log("click")}>Click me
-            </button>
-        )
-        const Container = (
-            <div><Title/><Button/></div>//!함수변수의 맨앞은 대문자 잊지마! 소문자는 일반 태그로 인식
-        );
-        ReactDOM.render(Container, root);
+        function render(){
+            ReactDOM.render(<App/>, root);
+        }
+        render();
     </script>
 
 </html>
