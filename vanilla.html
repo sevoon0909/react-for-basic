@@ -10,21 +10,21 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        let counter = 0;
-        function countUp(e) {
-            counter = counter + 1;
-            render();
+
+        function App() {
+            const [counter, modifier] = React.useState(0);
+            const upCount = () => {
+                modifier(counter + 1);
+            };
+            return (
+                <div>
+                    <h3>Total clikcs: {counter}</h3>
+                    <button onClick={upCount}>Click Me</button>
+                </div>
+            )
         }
-        const App = () => (
-            <div>
-                <h3>Total clikcs: {counter}</h3>
-                <button onClick={countUp}>Click Me</button>
-            </div>//!함수변수의 맨앞은 대문자 잊지마! 소문자는 일반 태그로 인식
-        );
-        function render(){
-            ReactDOM.render(<App/>, root);
-        }
-        render();
+
+        ReactDOM.render(<App/>, root);
     </script>
 
 </html>
